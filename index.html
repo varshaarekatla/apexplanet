@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Webpage</title>
+
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 20px;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        a {
+            color: #008080;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HTML Structure -->
+    <h1>Welcome to My Webpage</h1>
+    <p>This is a simple paragraph introducing you to web development.</p>
+
+    <h2>About Me</h2>
+    <p>I’m learning web development using HTML, CSS, and JavaScript.</p>
+
+    <h3>My Favorite Image</h3>
+    <img src="https://via.placeholder.com/300" alt="Placeholder Image" width="300">
+
+    <p>Visit <a href="https://www.w3schools.com/" target="_blank">W3Schools</a> to learn more about web development.</p>
+
+    <button onclick="showMessage()">Click Me!</button>
+
+    <!-- JavaScript -->
+    <script>
+        function showMessage() {
+            alert("Hello! You clicked the button.");
+        }
+    </script>
+</body>
+</html>
