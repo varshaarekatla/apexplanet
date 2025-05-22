@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Styling & JavaScript Projects</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f5f7fa;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    .explanation {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Advanced Styling & JavaScript Projects</h1>
+</header>
+
+<section>
+  <h2>Responsive Design</h2>
+  <p>This section demonstrates responsive design. Try resizing the browser window or viewing this page on mobile devices.</p>
+</section>
+
+<section id="quiz-section">
+  <h2>JavaScript Quiz</h2>
+  <div id="quiz"></div>
+  <button onclick="submitQuiz()">Submit Quiz</button>
+  <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
+</section>
+
+<section id="api-data">
+  <h2>Random Joke Generator</h2>
+  <p>Click the button below to fetch a random joke using a public API.</p>
+  <button onclick="getJoke()">Get a Joke</button>
+  <p id="joke" style="font-style: italic; margin-top: 15px;"></p>
+</section>
+
+<script>
+  const quizData = [
+    {
+      question: "Which language is used to style web pages?",
+      options: ["HTML", "CSS", "JavaScript"],
+      correct: 1,
+      explanation: "CSS (Cascading Style Sheets) is used to style and layout web pages."
+    },
+    {
+      question: "Which language is primarily used for client-side scripting?",
+      options: ["Python", "Java", "JavaScript"],
+      correct: 2,
+      explanation: "JavaScript is the main language for adding interactivity to web pages on the client-side."
+    },
+    {
+      question: "What tag is used to define an unordered list in HTML?",
+      options: ["<ul>", "<ol>", "<li>"],
+      correct: 0,
+      explanation: "The <ul> tag defines an unordered (bulleted) list."
+    },
+    {
+      question: "What does API stand for?",
+      options: ["Application Programming Interface", "Advanced Program Interaction", "App Processing Interface"],
+      correct: 0,
+      explanation: "API stands for Application Programming Interface, which allows communication between software components."
+    },
+    {
+      question: "Which JavaScript function is used to fetch data from an API?",
+      options: ["getData()", "fetch()", "getAPI()"],
+      correct: 1,
+      explanation: "The fetch() function is used in JavaScript to make network requests, like calling an API."
+    }
+  ];
+
+  function loadQuiz() {
+    const quiz = document.getElementById("quiz");
+    quiz.innerHTML = "";
+    quizData.forEach((q, index) => {
+      const questionEl = document.createElement("div");
+      questionEl.id = `question-${index}`;
+      questionEl.innerHTML = `
+        <p><strong>${index + 1}. ${q.question}</strong></p>
+        ${q.options.map((opt, i) => `
+          <label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>
+        `).join('')}
+        <div class="explanation" id="explanation-${index}" style="display: none;"></div>
+        <hr style="margin: 20px 0;">
+      `;
+      quiz.appendChild(questionEl);
+    });
+  }
+
+  function submitQuiz() {
+    let score = 0;
+    quizData.forEach((q, index) => {
+      const selected = document.querySelector(`input[name="q${index}"]:checked`);
+      const explanationDiv = document.getElementById(`explanation-${index}`);
+      explanationDiv.style.display = "none";
+      explanationDiv.innerText = "";
+
+      if (selected) {
+        const selectedValue = parseInt(selected.value);
+        if (selectedValue === q.correct) {
+          score++;
+        } else {
+          explanationDiv.innerHTML = `❌ Correct Answer: <strong>${q.options[q.correct]}</strong><br>${q.explanation}`;
+          explanationDiv.style.display = "block";
+        }
+      } else {
+        explanationDiv.innerHTML = `⚠️ You did not answer this question.<br>Correct Answer: <strong>${q.options[q.correct]}</strong><br>${q.explanation}`;
+        explanationDiv.style.display = "block";
+      }
+    });
+
+    document.getElementById("result").innerText = `You scored ${score}/${quizData.length}`;
+  }
+
+  function getJoke() {
+    fetch("https://official-joke-api.appspot.com/random_joke")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("joke").innerText = `${data.setup} — ${data.punchline}`;
+      })
+      .catch(() => {
+        document.getElementById("joke").innerText = "Oops! Couldn't fetch a joke.";
+      });
+  }
+
+  window.onload = loadQuiz;
+</script>
+
+</body>
+</html>
+
