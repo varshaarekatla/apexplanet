@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Dalya Baron</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f4f4f4;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .profile-card {
+      background: #fff;
+      max-width: 900px;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .profile-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .profile-image img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-content {
+      flex: 2;
+    }
+
+    .profile-content h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-content p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: #eee;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .badge.resume { background: #b5e853; }
+    .badge.research { background: #ffc107; }
+    .badge.outreach { background: #17c3b2; }
+    .badge.personal { background: #cfd8dc; }
+
+    .badge:hover {
+      background: #ccc;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <div class="profile-image">
+      <img src="https://via.placeholder.com/200" alt="Profile Photo" />
+    </div>
+    <div class="profile-content">
+      <h1>Dalya Baron</h1>
+      <p>
+        A graduate student at the Tel Aviv University Astrophysics Department. Working on active galactic nuclei, galaxy evolution, and machine learning algorithms applied to astronomical datasets.
+      </p>
+      <div class="badges">
+        <div class="badge resume" onclick="showAlert('Resume')">Resume</div>
+        <div class="badge research" onclick="showAlert('Research')">Research</div>
+        <div class="badge outreach" onclick="showAlert('Outreach')">Outreach</div>
+        <div class="badge personal" onclick="showAlert('Personal')">Personal</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showAlert(section) {
+      alert('You clicked on the ' + section + ' section.');
+    }
+  </script>
+</body>
+</html>
